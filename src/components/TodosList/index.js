@@ -11,9 +11,9 @@ const TodosList = ({ todoList, removeTodo, state }) => {
   return (
     <ul>
       {todoList.map(todo => (
-        <li key={todo}>
-          {todo + "  "}
-          <button onClick={() => removeTodo(todo)}>X</button>
+        <li key={todo.id}>
+          {todo.text + "  "}
+          <button onClick={() => removeTodo(todo.id)}>X</button>
         </li>
       ))}
     </ul>
@@ -26,7 +26,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  removeTodo: todo => dispatch({ type: "REMOVE_TODO", todo })
+  removeTodo: id => dispatch({ type: "REMOVE_TODO", id })
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodosList);

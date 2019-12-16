@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import shortid from "shortid";
 
 const AddForm = ({ createTodo }) => {
   const [todo, setTodo] = useState("");
@@ -19,7 +20,8 @@ const AddForm = ({ createTodo }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  createTodo: todo => dispatch({ type: "ADD_TODO", todo })
+  createTodo: text =>
+    dispatch({ type: "ADD_TODO", id: shortid.generate(), text })
 });
 
 export default connect(null, mapDispatchToProps)(AddForm);
